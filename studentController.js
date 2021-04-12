@@ -43,7 +43,7 @@ router.put('/', (req, res) => {
 })
 router.delete('/:id', (req, res) => {
     if (!req.params.id) {
-        res.status(400).send({ messError: 'not found id' })
+        return res.status(400).send({ messError: 'not found id' })
     }
     const id = { _id: req.params.id }
     Student.findByIdAndDelete(id, function (err, docs) {
@@ -51,7 +51,7 @@ router.delete('/:id', (req, res) => {
             console.log(err)
         }
         else {
-            res.json({ mess: "Sucessesful delete id:" + req.params.id })
+            return res.json({ mess: "Sucessesful delete id:" + req.params.id })
         }
     })
 })

@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 
 router.put('/', (req, res) => {
     if (!req.body.id) {
-        res.status(400).send({ messError: 'not found id' })
+        return   res.status(400).send({ messError: 'not found id' })
     }
     const id = { _id: req.body.id }
     const update = req.body;
@@ -32,7 +32,7 @@ router.put('/', (req, res) => {
 })
 router.delete('/:id', (req, res) => {
     if (!req.params.id) {
-        res.status(400).send({ messError: 'not found id' })
+        return res.status(400).send({ messError: 'not found id' })
     }
     const id = { _id: req.params.id }
     School.findByIdAndDelete(id, function (err, docs) {
