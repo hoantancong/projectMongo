@@ -7,6 +7,10 @@ var studentSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'School'
     },
+    class:{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Class'
+    },
     created: { 
         type: Date,
         default: Date.now

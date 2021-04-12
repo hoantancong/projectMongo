@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const School = require('./model/school')
+const Class = require('./model/class')
 
 router.get('/', (req, res) => {
-    return School.find().exec((err, schools) => {
+    return Class.find().exec((err, classes) => {
         if (err) throw err;
-        res.json(schools)
+        res.json(classes)
     })
 })
 
 
 router.post('/', (req, res) => {
-    let school = new School(req.body)
-    school.save((err) => {
+    let lop = new Class(req.body)
+    lop.save((err) => {
         if (err) throw err;
-        console.log('School save successfully');
+        console.log('class save successfully');
     })
-    res.json({ "data": school })
+    res.json({ "data": lop })
 })
 
 router.put('/', (req, res) => {
@@ -25,7 +25,7 @@ router.put('/', (req, res) => {
     }
     const id = { _id: req.body.id }
     const update = req.body;
-    School.findByIdAndUpdate(id, update, { new: true }, function (err, result) {
+    Class.findByIdAndUpdate(id, update, { new: true }, function (err, result) {
         if (err) return res.send(err)
         res.json(result)
     });
@@ -35,7 +35,7 @@ router.delete('/:id', (req, res) => {
         res.status(400).send({ messError: 'not found id' })
     }
     const id = { _id: req.params.id }
-    School.findByIdAndDelete(id, function (err, docs) {
+    Class.findByIdAndDelete(id, function (err, docs) {
         if (err) {
             console.log(err)
         }
