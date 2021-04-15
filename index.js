@@ -9,8 +9,9 @@ app.use(cors())
 const StudentRouter = require('./studentController')
 const classRouter = require('./classController')
 const SchoolRouter = require('./schoolController')
+const SubjectRouter = require('./subjectcontroller')
 //Thiết lập một kết nối mongoose mặc định
-var mongoDB = 'mongodb://localhost:27017/projectMongo';
+var mongoDB = 'mongodb://localhost:27017/University';
 mongoose.connect(mongoDB, function (err) {
     if (err) throw err;
     console.log('Successfully connected');
@@ -23,6 +24,7 @@ var db = mongoose.connection;
 app.use('/student', StudentRouter)
 app.use('/school', SchoolRouter)
 app.use('/class',classRouter)
+app.use('/subject',SubjectRouter)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.listen(PORT, () => { console.log("Server started on http://localhost:" + PORT) })
